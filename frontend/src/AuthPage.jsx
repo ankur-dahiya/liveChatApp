@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const AuthPage = (props) => {
+    const server_address = import.meta.env.VITE_SVADD;
     const onSubmit = (e) => {
       e.preventDefault();
       const { value } = e.target[0];
-      axios.post("http://localhost:3001/authenticate",
+      axios.post(`${server_address}/authenticate`,
       {username:value})
       // .then(rs=>props.onAuth({ username: value, secret: value }))
       .then(rs=>props.onAuth({...rs.data, secret: value }))
